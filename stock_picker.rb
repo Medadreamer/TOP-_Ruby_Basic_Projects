@@ -16,16 +16,16 @@ end
 
 def stock_picker(array)
     evaluated_stocks = evaluator(array)
-    best_combo = evaluated_stocks.map do |evaluation|
+    profits = evaluated_stocks.map do |evaluation|
         if evaluation.length < 2
             0
         else        
             evaluation.sort[evaluation.length - 1] - evaluation[0]
         end
     end
-    combo_index = best_combo.index(best_combo.max)
-    best_day_to_sell = array.index(evaluated_stocks[combo_index].sort[evaluated_stocks[combo_index].length - 1])
-    best_day_to_buy = array.index(evaluated_stocks[combo_index][0])
+    days_index = profits.index(profits.max)
+    best_day_to_sell = array.index(evaluated_stocks[days_index].sort[evaluated_stocks[days_index].length - 1])
+    best_day_to_buy = array.index(evaluated_stocks[days_index][0])
     [best_day_to_buy, best_day_to_sell]
 end
 
